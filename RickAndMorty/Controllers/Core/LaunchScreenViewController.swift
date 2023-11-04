@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LaunchScreenViewController: UIViewController {
+final class LaunchScreenViewController: UIViewController {
     
     private let loadingImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 258, height: 273))
@@ -27,6 +27,8 @@ class LaunchScreenViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(loadingImageView)
         view.addSubview(logoImageView)
+        
+        view.backgroundColor = .systemBackground
         
         setConstraints()
     }
@@ -52,10 +54,10 @@ class LaunchScreenViewController: UIViewController {
         }, completion: { done in
             if done {
                 DispatchQueue.main.asyncAfter(deadline: .now()+4, execute: {
-                    let characterViewController = CharacterViewController()
-                    characterViewController.modalTransitionStyle = .crossDissolve
-                    characterViewController.modalPresentationStyle = .fullScreen
-                    self.present(characterViewController, animated: true)
+                    let tabBarViewController = TabBarViewController()
+                    tabBarViewController.modalTransitionStyle = .crossDissolve
+                    tabBarViewController.modalPresentationStyle = .fullScreen
+                    self.present(tabBarViewController, animated: true)
                 })
             }
         })
@@ -73,4 +75,3 @@ extension LaunchScreenViewController {
         ])
     }
 }
-
