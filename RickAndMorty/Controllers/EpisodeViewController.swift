@@ -8,15 +8,15 @@
 import UIKit
 
 final class EpisodeViewController: UIViewController {
+    
+    private let networkManager = NetworkManager()
+    private var getAllEpisodesModel: GetAllEpisodesResponse?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         view.backgroundColor = .systemBackground
+            
         
-        let request = Request(endpoint: .episode)
-        print(request.url)
     }
     
 }

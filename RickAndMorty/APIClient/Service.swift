@@ -7,12 +7,15 @@
 
 import Foundation
 
-final class Service {
-    static let shared = Service()
-    
-    private init() {}
-    
-    public func execute<T: Codable>(_ request: Request, comletion: @escaping (Result<T, Error>) -> Void) {
-        
-    }
-}
+//final class Service {
+//    static let shared = Service()
+//    
+//    enum ServiceError: Error {
+//        case failedToCreateRequest
+//        case failedToGetData
+//    }
+//    
+//    private init() {}
+//    
+//    
+//}

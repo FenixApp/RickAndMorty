@@ -7,7 +7,7 @@
 
 import Foundation
 
-@frozen enum Endpoint: String {
-    case episode
-    case character // "character"
-}
+//@frozen enum Endpoint: String {
+//    case episode
+//    case character // "character"
+//}
