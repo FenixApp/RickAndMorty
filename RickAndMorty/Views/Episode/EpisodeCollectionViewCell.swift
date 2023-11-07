@@ -8,45 +8,56 @@
 import Foundation
 import UIKit
 
-final class EpisodeCollectionViewCell: UICollectionViewCell {
+class EpisodeCollectionViewCell: UICollectionViewCell {
     
-    static let cellIdentifier = "EpisodeCollectionViewCell"
+    static let id = "EpisodeCollectionViewCell"
+    
+    private let dataView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.layer.cornerRadius = 15
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     private let imageView: UIImageView = {
-       let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
+        let imageView = UIImageView()
+        imageView.backgroundColor = .systemGroupedBackground
+        imageView.layer.cornerRadius = 3
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private let nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
+        label.text = "Rick Sanchez"
         label.textColor = .black
-        label.font = .systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let descriptionView: UIView = {
-       let view = UIView()
-        view.backgroundColor = .red
+        let view = UIView()
+        view.backgroundColor = .systemGroupedBackground
+        view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let imageMovie: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(systemName: "play.tv")
+        imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private let nameEpisodeLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Test"
+        let label = UILabel()
+        label.text = "Pilot"
         label.textColor = .black
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -60,51 +71,90 @@ final class EpisodeCollectionViewCell: UICollectionViewCell {
     }()
     
     private let numberEpisodeLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 15)
-        label.text = "StestS"
+        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.text = "S01E01"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let imageHeart: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(systemName: "heart")
+        imageView.tintColor = .link
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .blue
-        contentView.addSubview(imageView)
         
+        setupViews()
+        setConstraints()
         setupLayer()
-        addConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupViews() {
+        contentView.addSubview(dataView)
+        contentView.addSubview(imageView)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(descriptionView)
+        contentView.addSubview(imageMovie)
+        contentView.addSubview(nameEpisodeLabel)
+        contentView.addSubview(underLabel)
+        contentView.addSubview(numberEpisodeLabel)
+        contentView.addSubview(imageHeart)
+    }
+    
     private func setupLayer() {
-        contentView.layer.cornerRadius = 8
         contentView.layer.shadowColor = UIColor.label.cgColor
-        contentView.layer.shadowOffset = CGSize(width: -4.0, height: 4.0)
+        contentView.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
         contentView.layer.shadowOpacity = 0.3
     }
     
-    private func addConstraints() {
+}
+
+extension EpisodeCollectionViewCell {
+    func setConstraints() {
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            dataView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            dataView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            dataView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            dataView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
             
-            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
-            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            imageView.topAnchor.constraint(equalTo: dataView.topAnchor, constant: 0),
+            imageView.leadingAnchor.constraint(equalTo: dataView.leadingAnchor, constant: 0),
+            imageView.trailingAnchor.constraint(equalTo: dataView.trailingAnchor, constant: 0),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
+            
+            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
+            nameLabel.leadingAnchor.constraint(equalTo: dataView.leadingAnchor, constant: 20),
+            nameLabel.trailingAnchor.constraint(equalTo: dataView.trailingAnchor, constant: -20),
+            
+            descriptionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            descriptionView.leadingAnchor.constraint(equalTo: dataView.leadingAnchor, constant: 0),
+            descriptionView.trailingAnchor.constraint(equalTo: dataView.trailingAnchor, constant: 0),
+            descriptionView.bottomAnchor.constraint(equalTo: dataView.bottomAnchor, constant: 0),
+            
+            imageMovie.leadingAnchor.constraint(equalTo: descriptionView.leadingAnchor, constant: 25),
+            imageMovie.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
+            
+            nameEpisodeLabel.leadingAnchor.constraint(equalTo: imageMovie.trailingAnchor, constant: 10),
+            nameEpisodeLabel.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
+            
+            underLabel.leadingAnchor.constraint(equalTo: nameEpisodeLabel.trailingAnchor, constant: 5),
+            underLabel.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
+            
+            numberEpisodeLabel.leadingAnchor.constraint(equalTo: underLabel.trailingAnchor, constant: 5),
+            numberEpisodeLabel.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
+            
+            imageHeart.trailingAnchor.constraint(equalTo: descriptionView.trailingAnchor, constant: -25),
+            imageHeart.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor)
         ])
     }
 }

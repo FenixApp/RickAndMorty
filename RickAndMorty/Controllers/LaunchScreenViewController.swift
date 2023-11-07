@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LaunchScreenViewController: UIViewController {
+class LaunchScreenViewController: UIViewController {
     
     private let loadingImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 258, height: 273))

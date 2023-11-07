@@ -7,47 +7,29 @@
 
 import UIKit
 
-final class TabBarViewController: UITabBarController {
-    
-    private let logoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "Logo")
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(logoImageView)
-        view.backgroundColor = .systemBackground
-        
-        setupTabs()
-        setConstraints()
+        setupItems()
+        setupLayer()
     }
     
-    private func setupTabs() {
+    private func setupLayer() {
+        tabBar.layer.borderWidth = 1
+        tabBar.layer.borderColor = UIColor.systemGroupedBackground.cgColor
+    }
+    
+    private func setupItems() {
         let episodesViewController = EpisodeViewController()
         let favouritesViewController = FavouriteViewController()
         
-        let episodesNavigation = UINavigationController(rootViewController: episodesViewController)
-        let favouritesNavigation = UINavigationController(rootViewController: favouritesViewController)
+        setViewControllers([episodesViewController, favouritesViewController], animated: true)
         
-        episodesNavigation.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house"), tag: 1)
-        favouritesNavigation.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "heart"), tag: 2)
+        guard let items = tabBar.items else { return }
         
-        setViewControllers([episodesNavigation, favouritesNavigation], animated: true)
-    }
-}
-
-extension TabBarViewController {
-    private func setConstraints() {
-        NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.heightAnchor.constraint(equalToConstant: 128),
-            logoImageView.widthAnchor.constraint(equalToConstant: 240)
-        ])
+        items[0].image = UIImage(systemName: "house")
+        items[1].image = UIImage(systemName: "heart")
     }
 }
