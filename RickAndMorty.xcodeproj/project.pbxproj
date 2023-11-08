@@ -13,14 +13,14 @@
 		C47E26B42AF56C9D00E10B38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C47E26B32AF56C9D00E10B38 /* Assets.xcassets */; };
 		C47E26B72AF56C9D00E10B38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47E26B52AF56C9D00E10B38 /* LaunchScreen.storyboard */; };
 		C47E26BF2AF5705100E10B38 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26BE2AF5705100E10B38 /* TabBarViewController.swift */; };
-		C47E26CA2AF66FDC00E10B38 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26C92AF66FDC00E10B38 /* Details.swift */; };
 		C47E26CF2AF6766D00E10B38 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26CE2AF6766D00E10B38 /* CharacterViewController.swift */; };
 		C47E26D12AF676D400E10B38 /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26D02AF676D400E10B38 /* EpisodeViewController.swift */; };
 		C47E26D32AF6771B00E10B38 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26D22AF6771B00E10B38 /* FavouriteViewController.swift */; };
-		C47E26E52AF7575900E10B38 /* GetAllEpisodesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26E42AF7575900E10B38 /* GetAllEpisodesResponse.swift */; };
-		C47E26E72AF78A5400E10B38 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26E62AF78A5400E10B38 /* NetworkManager.swift */; };
+		C47E26E52AF7575900E10B38 /* EpisodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26E42AF7575900E10B38 /* EpisodeModel.swift */; };
+		C47E26E72AF78A5400E10B38 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26E62AF78A5400E10B38 /* NetworkRequest.swift */; };
 		C47E26EA2AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26E92AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift */; };
 		C47E26F02AFBE12300E10B38 /* EpisodeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26EF2AFBE12300E10B38 /* EpisodeCollectionView.swift */; };
+		C47E26F22AFC04DB00E10B38 /* NetworkDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26F12AFC04DB00E10B38 /* NetworkDataFetch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,14 +32,14 @@
 		C47E26B62AF56C9D00E10B38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C47E26B82AF56C9D00E10B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C47E26BE2AF5705100E10B38 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		C47E26C92AF66FDC00E10B38 /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		C47E26CE2AF6766D00E10B38 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		C47E26D02AF676D400E10B38 /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		C47E26D22AF6771B00E10B38 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
-		C47E26E42AF7575900E10B38 /* GetAllEpisodesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllEpisodesResponse.swift; sourceTree = "<group>"; };
-		C47E26E62AF78A5400E10B38 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C47E26E42AF7575900E10B38 /* EpisodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeModel.swift; sourceTree = "<group>"; };
+		C47E26E62AF78A5400E10B38 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		C47E26E92AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
 		C47E26EF2AFBE12300E10B38 /* EpisodeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionView.swift; sourceTree = "<group>"; };
+		C47E26F12AFC04DB00E10B38 /* NetworkDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +97,7 @@
 		C47E26C12AF66DAB00E10B38 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C47E26E42AF7575900E10B38 /* GetAllEpisodesResponse.swift */,
-				C47E26C92AF66FDC00E10B38 /* Details.swift */,
+				C47E26E42AF7575900E10B38 /* EpisodeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -114,7 +113,8 @@
 		C47E26C52AF66DE400E10B38 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				C47E26E62AF78A5400E10B38 /* NetworkManager.swift */,
+				C47E26E62AF78A5400E10B38 /* NetworkRequest.swift */,
+				C47E26F12AFC04DB00E10B38 /* NetworkDataFetch.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -209,14 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C47E26CA2AF66FDC00E10B38 /* Details.swift in Sources */,
 				C47E26AF2AF56C9D00E10B38 /* LaunchScreenViewController.swift in Sources */,
 				C47E26F02AFBE12300E10B38 /* EpisodeCollectionView.swift in Sources */,
-				C47E26E72AF78A5400E10B38 /* NetworkManager.swift in Sources */,
-				C47E26E52AF7575900E10B38 /* GetAllEpisodesResponse.swift in Sources */,
+				C47E26E72AF78A5400E10B38 /* NetworkRequest.swift in Sources */,
+				C47E26E52AF7575900E10B38 /* EpisodeModel.swift in Sources */,
 				C47E26D12AF676D400E10B38 /* EpisodeViewController.swift in Sources */,
 				C47E26AB2AF56C9D00E10B38 /* AppDelegate.swift in Sources */,
 				C47E26D32AF6771B00E10B38 /* FavouriteViewController.swift in Sources */,
+				C47E26F22AFC04DB00E10B38 /* NetworkDataFetch.swift in Sources */,
 				C47E26EA2AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift in Sources */,
 				C47E26CF2AF6766D00E10B38 /* CharacterViewController.swift in Sources */,
 				C47E26AD2AF56C9D00E10B38 /* SceneDelegate.swift in Sources */,

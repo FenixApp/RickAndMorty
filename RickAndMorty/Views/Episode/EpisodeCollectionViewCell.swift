@@ -26,7 +26,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private let nameLabel: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Rick Sanchez"
         label.textColor = .black

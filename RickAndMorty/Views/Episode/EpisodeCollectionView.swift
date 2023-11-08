@@ -8,6 +8,9 @@
 import UIKit
 
 class EpisodeCollectionView: UICollectionView {
+    
+    private var episodeArray = [EpisodeModel]()
+    private let networkRequest = NetworkRequest.shared
 
     private let collectionLayout = UICollectionViewFlowLayout()
     
@@ -20,6 +23,7 @@ class EpisodeCollectionView: UICollectionView {
         setDelegates()
         register(EpisodeCollectionViewCell.self
                  , forCellWithReuseIdentifier: idEpisodeCell)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -28,7 +32,6 @@ class EpisodeCollectionView: UICollectionView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .red
     }
     
     private func setDelegates() {
@@ -41,7 +44,7 @@ class EpisodeCollectionView: UICollectionView {
 
 extension EpisodeCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

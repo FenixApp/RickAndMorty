@@ -9,8 +9,6 @@ import UIKit
 
 class EpisodeViewController: UIViewController {
     
-    private let networkManager = NetworkManager()
-    
     private let episodeCollectionView = EpisodeCollectionView()
     
     override func viewDidLoad() {
@@ -20,8 +18,7 @@ class EpisodeViewController: UIViewController {
         
         setupViews()
         setConstraints()
-        
-        print(networkManager.fetchData)
+        self.episodeCollectionView.reloadData()
     }
     
     private func setupViews() {
