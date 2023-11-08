@@ -22,8 +22,8 @@ class TabBarViewController: UITabBarController {
     }
     
     private func setupItems() {
-        let episodesViewController = EpisodeViewController()
-        let favouritesViewController = FavouriteViewController()
+        let episodesViewController = UINavigationController(rootViewController: EpisodeViewController())
+        let favouritesViewController = UINavigationController(rootViewController: FavouriteViewController())
         
         setViewControllers([episodesViewController, favouritesViewController], animated: true)
         

@@ -20,7 +20,7 @@
 		C47E26E52AF7575900E10B38 /* GetAllEpisodesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26E42AF7575900E10B38 /* GetAllEpisodesResponse.swift */; };
 		C47E26E72AF78A5400E10B38 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26E62AF78A5400E10B38 /* NetworkManager.swift */; };
 		C47E26EA2AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26E92AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift */; };
-		C47E26EC2AF9496100E10B38 /* EpisodeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26EB2AF9496100E10B38 /* EpisodeCollectionView.swift */; };
+		C47E26F02AFBE12300E10B38 /* EpisodeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E26EF2AFBE12300E10B38 /* EpisodeCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +39,7 @@
 		C47E26E42AF7575900E10B38 /* GetAllEpisodesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllEpisodesResponse.swift; sourceTree = "<group>"; };
 		C47E26E62AF78A5400E10B38 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C47E26E92AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
-		C47E26EB2AF9496100E10B38 /* EpisodeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionView.swift; sourceTree = "<group>"; };
+		C47E26EF2AFBE12300E10B38 /* EpisodeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				C47E26E92AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift */,
-				C47E26EB2AF9496100E10B38 /* EpisodeCollectionView.swift */,
+				C47E26EF2AFBE12300E10B38 /* EpisodeCollectionView.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -211,6 +211,7 @@
 			files = (
 				C47E26CA2AF66FDC00E10B38 /* Details.swift in Sources */,
 				C47E26AF2AF56C9D00E10B38 /* LaunchScreenViewController.swift in Sources */,
+				C47E26F02AFBE12300E10B38 /* EpisodeCollectionView.swift in Sources */,
 				C47E26E72AF78A5400E10B38 /* NetworkManager.swift in Sources */,
 				C47E26E52AF7575900E10B38 /* GetAllEpisodesResponse.swift in Sources */,
 				C47E26D12AF676D400E10B38 /* EpisodeViewController.swift in Sources */,
@@ -218,7 +219,6 @@
 				C47E26D32AF6771B00E10B38 /* FavouriteViewController.swift in Sources */,
 				C47E26EA2AF8EBA700E10B38 /* EpisodeCollectionViewCell.swift in Sources */,
 				C47E26CF2AF6766D00E10B38 /* CharacterViewController.swift in Sources */,
-				C47E26EC2AF9496100E10B38 /* EpisodeCollectionView.swift in Sources */,
 				C47E26AD2AF56C9D00E10B38 /* SceneDelegate.swift in Sources */,
 				C47E26BF2AF5705100E10B38 /* TabBarViewController.swift in Sources */,
 			);

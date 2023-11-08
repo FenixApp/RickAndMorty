@@ -21,4 +21,5 @@ struct GetAllEpisodesResponse: Codable {
 
 enum Link: String {
     case episodesAPI = "https://rickandmortyapi.com/api/episode"
+    case imagesAPI = ""
 }

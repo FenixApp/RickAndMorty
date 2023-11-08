@@ -10,12 +10,10 @@ import UIKit
 
 class EpisodeCollectionViewCell: UICollectionViewCell {
     
-    static let id = "EpisodeCollectionViewCell"
-    
     private let dataView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
-        view.layer.cornerRadius = 15
+        view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -23,7 +21,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .systemGroupedBackground
-        imageView.layer.cornerRadius = 3
+        imageView.layer.cornerRadius = 10
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -99,7 +97,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(dataView)
         contentView.addSubview(imageView)
         contentView.addSubview(nameLabel)
