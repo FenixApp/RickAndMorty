@@ -18,7 +18,6 @@ class EpisodeViewController: UIViewController {
         
         setupViews()
         setConstraints()
-        self.episodeCollectionView.reloadData()
     }
     
     private func setupViews() {

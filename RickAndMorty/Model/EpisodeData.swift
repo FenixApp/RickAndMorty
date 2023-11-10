@@ -1,5 +1,5 @@
 //
-//  EpisodeModel.swift
+//  EpisodeData.swift
 //  RickAndMorty
 //
 //  Created by Dmitriy Starozhilov on 05.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EpisodeModel: Codable {
+struct EpisodeData: Codable {
     let info: Info
     let results: [Results]
 }

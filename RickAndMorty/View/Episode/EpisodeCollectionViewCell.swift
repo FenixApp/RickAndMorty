@@ -10,6 +10,8 @@ import UIKit
 
 class EpisodeCollectionViewCell: UICollectionViewCell {
     
+    private var urlString: String = ""
+    
     private let dataView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
@@ -28,7 +30,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Rick Sanchez"
+        label.text = "Test"
         label.textColor = .black
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +55,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     
     private let nameEpisodeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Pilot"
+        label.text = "Test"
         label.textColor = .black
         label.font = .systemFont(ofSize: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +74,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .black
         label.font = .systemFont(ofSize: 13, weight: .regular)
-        label.text = "S01E01"
+        label.text = "Test"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -114,6 +116,53 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
         contentView.layer.shadowOpacity = 0.3
     }
+    
+    
+    
+    private func updateUI(episodeName: String?, episodeNumber: String?) {
+        
+        self.nameEpisodeLabel.text = episodeName
+        self.numberEpisodeLabel.text = episodeNumber
+        
+//        guard let posterString = poster else { return }
+//        urlString = "https://rickandmortyapi.com/api/character/" + posterString
+//
+//        guard let posterImageURL = URL(string: urlString) else {
+//            self.imageView.image = UIImage(named: "noImageAvailable")
+//            return
+//        }
+//
+//        self.imageView.image = nil
+//
+//        getImageDataFrom(url: posterImageURL)
+    }
+    
+    private func getImageDataFrom(url: URL) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if let error = error {
+                print("DataTask error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data else {
+                print("Empty Data")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if let image = UIImage(data: data) {
+                    self.imageView.image = image
+                }
+            }
+        }.resume()
+    }
+    
+    func setCellWithValuesOf(_ results: Results) {
+        updateUI(episodeName: results.name, episodeNumber: results.episode)
+    }
+    
+    
     
 }
 

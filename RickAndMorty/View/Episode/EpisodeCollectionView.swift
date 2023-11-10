@@ -8,22 +8,18 @@
 import UIKit
 
 class EpisodeCollectionView: UICollectionView {
-    
-    private var episodeArray = [EpisodeModel]()
-    private let networkRequest = NetworkRequest.shared
 
     private let collectionLayout = UICollectionViewFlowLayout()
-    
     private let idEpisodeCell = "idEpisodeCell"
+    
+    private var episodeViewModel = EpisodeViewModel()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: collectionLayout)
         
         configure()
         setDelegates()
-        register(EpisodeCollectionViewCell.self
-                 , forCellWithReuseIdentifier: idEpisodeCell)
-        
+        loadEpisodesData()
     }
     
     required init?(coder: NSCoder) {
@@ -32,11 +28,19 @@ class EpisodeCollectionView: UICollectionView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
+        register(EpisodeCollectionViewCell.self
+                 , forCellWithReuseIdentifier: idEpisodeCell)
     }
     
     private func setDelegates() {
-        dataSource = self
         delegate = self
+    }
+    
+    private func loadEpisodesData() {
+        episodeViewModel.fetchEpisodesData { [weak self] in
+            self?.dataSource = self
+            self?.reloadData()
+        }
     }
 }
 
@@ -44,12 +48,15 @@ class EpisodeCollectionView: UICollectionView {
 
 extension EpisodeCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        return episodeViewModel.numberOfItemsInSection(section: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idEpisodeCell, for: indexPath) as? EpisodeCollectionViewCell else { return UICollectionViewCell()
         }
+        
+        let episodeData = episodeViewModel.cellForItemAt(indexPath: indexPath)
+        cell.setCellWithValuesOf(episodeData)
         return cell
     }
 }
