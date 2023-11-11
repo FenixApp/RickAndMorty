@@ -10,7 +10,7 @@ import UIKit
 
 class EpisodeCollectionViewCell: UICollectionViewCell {
     
-    private var urlString: String = ""
+    static let idEpisodeCell = "EpisodeCollectionViewCell"
     
     private let dataView: UIView = {
         let view = UIView()
@@ -24,6 +24,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.backgroundColor = .systemGroupedBackground
         imageView.layer.cornerRadius = 10
+        imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -117,54 +118,16 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOpacity = 0.3
     }
     
-    
-    
-    private func updateUI(episodeName: String?, episodeNumber: String?) {
-        
-        self.nameEpisodeLabel.text = episodeName
-        self.numberEpisodeLabel.text = episodeNumber
-        
-//        guard let posterString = poster else { return }
-//        urlString = "https://rickandmortyapi.com/api/character/" + posterString
-//
-//        guard let posterImageURL = URL(string: urlString) else {
-//            self.imageView.image = UIImage(named: "noImageAvailable")
-//            return
-//        }
-//
-//        self.imageView.image = nil
-//
-//        getImageDataFrom(url: posterImageURL)
+    func setValue(model: EpisodeModel) {
+        imageView.image = model.imagePerson
+        nameLabel.text = model.namePerson
+        nameEpisodeLabel.text = model.nameEpisode
+        numberEpisodeLabel.text = model.codeEpisode
     }
-    
-    private func getImageDataFrom(url: URL) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if let error = error {
-                print("DataTask error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else {
-                print("Empty Data")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if let image = UIImage(data: data) {
-                    self.imageView.image = image
-                }
-            }
-        }.resume()
-    }
-    
-    func setCellWithValuesOf(_ results: Results) {
-        updateUI(episodeName: results.name, episodeNumber: results.episode)
-    }
-    
-    
     
 }
+
+//MARK: - Set Constraints
 
 extension EpisodeCollectionViewCell {
     func setConstraints() {

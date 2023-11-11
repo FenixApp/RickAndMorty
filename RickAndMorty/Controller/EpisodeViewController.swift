@@ -10,21 +10,34 @@ import UIKit
 class EpisodeViewController: UIViewController {
     
     private let episodeCollectionView = EpisodeCollectionView()
+    private lazy var episodeViewModel = EpisodeViewModel(viewController: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        title = "Episodes"
         
         setupViews()
         setConstraints()
     }
     
     private func setupViews() {
+        view.backgroundColor = .systemBackground
+        title = "Episodes"
+        
         view.addSubview(episodeCollectionView)
+        episodeViewModel.getEpisode()
+    }
+    
+    func setEpisode(_ episodeModel: [EpisodeModel]) {
+        print(episodeModel)
+        episodeCollectionView.setEpisode(episodeModel)
+        DispatchQueue.main.async {
+            self.episodeCollectionView.reloadData()
+        }
     }
     
 }
+
+//MARK: - Set Constraints
 
 extension EpisodeViewController {
     func setConstraints() {

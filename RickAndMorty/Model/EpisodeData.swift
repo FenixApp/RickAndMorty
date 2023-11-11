@@ -9,7 +9,7 @@ import Foundation
 
 struct EpisodeData: Codable {
     let info: Info
-    let results: [Results]
+    let results: [Episode]
 }
 
 struct Info: Codable {
@@ -19,7 +19,7 @@ struct Info: Codable {
     let prev: String?
 }
 
-struct Results: Codable {
+struct Episode: Codable {
     let id: Int
     let name: String
     let airDate: String

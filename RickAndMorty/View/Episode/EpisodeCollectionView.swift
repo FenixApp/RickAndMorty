@@ -7,19 +7,19 @@
 
 import UIKit
 
-class EpisodeCollectionView: UICollectionView {
+final class EpisodeCollectionView: UICollectionView {
 
     private let collectionLayout = UICollectionViewFlowLayout()
-    private let idEpisodeCell = "idEpisodeCell"
     
-    private var episodeViewModel = EpisodeViewModel()
+    private var episodeModel = [EpisodeModel]()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: .zero, collectionViewLayout: collectionLayout)
         
         configure()
         setDelegates()
-        loadEpisodesData()
+        register(EpisodeCollectionViewCell.self
+                 , forCellWithReuseIdentifier: EpisodeCollectionViewCell.idEpisodeCell)
     }
     
     required init?(coder: NSCoder) {
@@ -28,19 +28,16 @@ class EpisodeCollectionView: UICollectionView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        register(EpisodeCollectionViewCell.self
-                 , forCellWithReuseIdentifier: idEpisodeCell)
+        showsVerticalScrollIndicator = false
     }
     
     private func setDelegates() {
+        dataSource = self
         delegate = self
     }
     
-    private func loadEpisodesData() {
-        episodeViewModel.fetchEpisodesData { [weak self] in
-            self?.dataSource = self
-            self?.reloadData()
-        }
+    func setEpisode(_ episode: [EpisodeModel]) {
+        self.episodeModel = episode
     }
 }
 
@@ -48,15 +45,14 @@ class EpisodeCollectionView: UICollectionView {
 
 extension EpisodeCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return episodeViewModel.numberOfItemsInSection(section: section)
+        episodeModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idEpisodeCell, for: indexPath) as? EpisodeCollectionViewCell else { return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EpisodeCollectionViewCell.idEpisodeCell, for: indexPath) as? EpisodeCollectionViewCell else { return UICollectionViewCell()
         }
         
-        let episodeData = episodeViewModel.cellForItemAt(indexPath: indexPath)
-        cell.setCellWithValuesOf(episodeData)
+        cell.setValue(model: episodeModel[indexPath.row])
         return cell
     }
 }

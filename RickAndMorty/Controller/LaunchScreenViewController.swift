@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LaunchScreenViewController: UIViewController {
+final class LaunchScreenViewController: UIViewController {
     
     private let loadingImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 258, height: 273))
@@ -64,6 +64,8 @@ class LaunchScreenViewController: UIViewController {
     }
     
 }
+
+//MARK: - Set Constraints
 
 extension LaunchScreenViewController {
     private func setConstraints() {
