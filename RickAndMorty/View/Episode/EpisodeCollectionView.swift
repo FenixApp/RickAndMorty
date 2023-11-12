@@ -60,8 +60,8 @@ extension EpisodeCollectionView: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 
 extension EpisodeCollectionView: UICollectionViewDelegate {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(episodeModel[indexPath.row])
     }
 }
 

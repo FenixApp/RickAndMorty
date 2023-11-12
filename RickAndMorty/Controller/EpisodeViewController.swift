@@ -12,11 +12,29 @@ class EpisodeViewController: UIViewController {
     private let episodeCollectionView = EpisodeCollectionView()
     private lazy var episodeViewModel = EpisodeViewModel(viewController: self)
     
+    private let apiService = ApiService.shared
+    private let dataFetchService = DataFetchService.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         setConstraints()
+        
+        apiService.getEpisodeData { result in
+            print(result)
+        }
+        apiService.getCharacterData(id: "2") { result in
+            print(result)
+        }
+        apiService.getImageData(id: "2") { result in
+            print(result)
+        }
+        episodeViewModel.getEpisode()
+        
+        dataFetchService.fetchEpisode { EpisodeData, Error in
+            print(EpisodeData)
+        }
     }
     
     private func setupViews() {
@@ -24,7 +42,7 @@ class EpisodeViewController: UIViewController {
         title = "Episodes"
         
         view.addSubview(episodeCollectionView)
-        episodeViewModel.getEpisode()
+//        episodeViewModel.getEpisode()
     }
     
     func setEpisode(_ episodeModel: [EpisodeModel]) {
