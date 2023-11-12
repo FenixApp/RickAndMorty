@@ -93,7 +93,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let heartButton: UIButton = {
+    lazy var heartButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = UIColor(red: 0.09, green: 0.71, blue: 0.80, alpha: 1)
@@ -160,6 +160,10 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     
     @objc private func heartButtonTapped() {
         isActive = !isActive
+        heartButton.transform = CGAffineTransform(scaleX: 1.7, y: 1.7)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 6, options: .allowUserInteraction) {
+            self.heartButton.transform = .identity
+        }
     }
     
 }
