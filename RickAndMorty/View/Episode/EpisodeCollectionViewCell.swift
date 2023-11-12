@@ -38,6 +38,15 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let speciesLabel: UILabel = {
+       let label = UILabel()
+        label.text = "Male"
+        label.textColor = .lightGray
+        label.font = .systemFont(ofSize: 13)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let descriptionView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGroupedBackground
@@ -59,6 +68,8 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         label.text = "Test"
         label.textColor = .black
         label.font = .systemFont(ofSize: 13)
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -74,8 +85,10 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     private let numberEpisodeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.font = .systemFont(ofSize: 13)
         label.text = "Test"
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
