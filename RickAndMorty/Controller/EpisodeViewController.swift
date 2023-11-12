@@ -21,28 +21,14 @@ class EpisodeViewController: UIViewController {
         setupViews()
         setConstraints()
         
-        apiService.getEpisodeData { result in
-            print(result)
-        }
-        apiService.getCharacterData(id: "2") { result in
-            print(result)
-        }
-        apiService.getImageData(id: "2") { result in
-            print(result)
-        }
         episodeViewModel.getEpisode()
-        
-        dataFetchService.fetchEpisode { EpisodeData, Error in
-            print(EpisodeData)
-        }
     }
     
     private func setupViews() {
         view.backgroundColor = .systemBackground
-        title = "Episodes"
         
+        episodeCollectionView.episodeDelegate = self
         view.addSubview(episodeCollectionView)
-//        episodeViewModel.getEpisode()
     }
     
     func setEpisode(_ episodeModel: [EpisodeModel]) {
@@ -53,6 +39,15 @@ class EpisodeViewController: UIViewController {
         }
     }
     
+}
+
+//MARK: - EpisodeProtocol
+
+extension EpisodeViewController: EpisodeProtocol {
+    func didSelect(character: EpisodeModel) {
+        let characterViewController = CharacterViewController(characterModel: character)
+        navigationController?.pushViewController(characterViewController, animated: true)
+    }
 }
 
 //MARK: - Set Constraints

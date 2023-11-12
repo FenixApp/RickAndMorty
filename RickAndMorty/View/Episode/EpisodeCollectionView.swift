@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol EpisodeProtocol: AnyObject {
+    func didSelect(character: EpisodeModel)
+}
+
 final class EpisodeCollectionView: UICollectionView {
+    
+    weak var episodeDelegate: EpisodeProtocol?
 
     private let collectionLayout = UICollectionViewFlowLayout()
-    
     private var episodeModel = [EpisodeModel]()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
@@ -61,7 +66,7 @@ extension EpisodeCollectionView: UICollectionViewDataSource {
 
 extension EpisodeCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(episodeModel[indexPath.row])
+        episodeDelegate?.didSelect(character: episodeModel[indexPath.row])
     }
 }
 

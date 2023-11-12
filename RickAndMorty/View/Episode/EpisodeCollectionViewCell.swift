@@ -24,7 +24,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.backgroundColor = .systemGroupedBackground
         imageView.layer.cornerRadius = 10
-        imageView.isUserInteractionEnabled = true
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -57,7 +57,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     
     private let imageMovie: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "play.tv")
+        imageView.image = UIImage(named: "Play")
         imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -74,7 +74,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let underLabel: UILabel = {
+    private let underEpisodeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.text = "|"
@@ -87,19 +87,34 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         label.textColor = .black
         label.font = .systemFont(ofSize: 13)
         label.text = "Test"
-        label.numberOfLines = 2
+        label.minimumScaleFactor = 0.7
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let imageHeart: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "heart")
-        imageView.tintColor = .link
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    private let heartButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.tintColor = UIColor(red: 0.09, green: 0.71, blue: 0.80, alpha: 1)
+        button.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
+    
+    private var isActive: Bool = false {
+        didSet {
+            if self.isActive {
+                heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                heartButton.tintColor = .red
+            } else {
+                heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                heartButton.tintColor = UIColor(red: 0.09, green: 0.71, blue: 0.80, alpha: 1)
+            }
+        }
+    }
+    
+    private var labelsStackView = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -117,12 +132,16 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(dataView)
         contentView.addSubview(imageView)
         contentView.addSubview(nameLabel)
+        contentView.addSubview(speciesLabel)
         contentView.addSubview(descriptionView)
         contentView.addSubview(imageMovie)
-        contentView.addSubview(nameEpisodeLabel)
-        contentView.addSubview(underLabel)
-        contentView.addSubview(numberEpisodeLabel)
-        contentView.addSubview(imageHeart)
+        contentView.addSubview(heartButton)
+        
+        labelsStackView = UIStackView(arrangedSubviews: [nameEpisodeLabel, underEpisodeLabel, numberEpisodeLabel])
+        labelsStackView.axis = .horizontal
+        labelsStackView.spacing = 5
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(labelsStackView)
     }
     
     private func setupLayer() {
@@ -134,8 +153,13 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     func setValue(model: EpisodeModel) {
         imageView.image = model.imagePerson
         nameLabel.text = model.namePerson
+        speciesLabel.text = model.speciesPerson
         nameEpisodeLabel.text = model.nameEpisode
         numberEpisodeLabel.text = model.codeEpisode
+    }
+    
+    @objc private func heartButtonTapped() {
+        isActive = !isActive
     }
     
 }
@@ -159,7 +183,11 @@ extension EpisodeCollectionViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: dataView.leadingAnchor, constant: 20),
             nameLabel.trailingAnchor.constraint(equalTo: dataView.trailingAnchor, constant: -20),
             
-            descriptionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            speciesLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+            speciesLabel.leadingAnchor.constraint(equalTo: dataView.leadingAnchor, constant: 20),
+            speciesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            
+            descriptionView.topAnchor.constraint(equalTo: speciesLabel.bottomAnchor, constant: 10),
             descriptionView.leadingAnchor.constraint(equalTo: dataView.leadingAnchor, constant: 0),
             descriptionView.trailingAnchor.constraint(equalTo: dataView.trailingAnchor, constant: 0),
             descriptionView.bottomAnchor.constraint(equalTo: dataView.bottomAnchor, constant: 0),
@@ -167,17 +195,12 @@ extension EpisodeCollectionViewCell {
             imageMovie.leadingAnchor.constraint(equalTo: descriptionView.leadingAnchor, constant: 25),
             imageMovie.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
             
-            nameEpisodeLabel.leadingAnchor.constraint(equalTo: imageMovie.trailingAnchor, constant: 10),
-            nameEpisodeLabel.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
+            labelsStackView.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
+            labelsStackView.leadingAnchor.constraint(equalTo: imageMovie.trailingAnchor, constant: 5),
+            labelsStackView.trailingAnchor.constraint(equalTo: heartButton.leadingAnchor, constant: -5),
             
-            underLabel.leadingAnchor.constraint(equalTo: nameEpisodeLabel.trailingAnchor, constant: 5),
-            underLabel.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
-            
-            numberEpisodeLabel.leadingAnchor.constraint(equalTo: underLabel.trailingAnchor, constant: 5),
-            numberEpisodeLabel.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor),
-            
-            imageHeart.trailingAnchor.constraint(equalTo: descriptionView.trailingAnchor, constant: -25),
-            imageHeart.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor)
+            heartButton.trailingAnchor.constraint(equalTo: descriptionView.trailingAnchor, constant: -25),
+            heartButton.centerYAnchor.constraint(equalTo: descriptionView.centerYAnchor)
         ])
     }
 }
