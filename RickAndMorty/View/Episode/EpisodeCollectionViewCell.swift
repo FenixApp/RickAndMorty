@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class EpisodeCollectionViewCell: UICollectionViewCell {
+final class EpisodeCollectionViewCell: UICollectionViewCell {
     
     static let idEpisodeCell = "EpisodeCollectionViewCell"
     
@@ -29,7 +29,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Test"
         label.textColor = .black
@@ -38,7 +38,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let speciesLabel: UILabel = {
+    private let speciesLabel: UILabel = {
        let label = UILabel()
         label.text = "Male"
         label.textColor = .lightGray
@@ -150,7 +150,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOpacity = 0.3
     }
     
-    func setValue(model: EpisodeModel) {
+    public func setValue(model: EpisodeModel) {
         imageView.image = model.imagePerson
         nameLabel.text = model.namePerson
         speciesLabel.text = model.speciesPerson
@@ -160,12 +160,11 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     
     @objc private func heartButtonTapped() {
         isActive = !isActive
-        heartButton.transform = CGAffineTransform(scaleX: 1.7, y: 1.7)
+        heartButton.transform = CGAffineTransform(scaleX: 1.7, y: 1.1)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 6, options: .allowUserInteraction) {
             self.heartButton.transform = .identity
         }
     }
-    
 }
 
 //MARK: - Set Constraints

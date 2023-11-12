@@ -35,7 +35,7 @@ final class EpisodeViewModel {
         }
     }
     
-    private func getCharacter() {
+    func getCharacter() {
         for i in 0..<episodeModel.count {
             DataFetchService.shared.fetchCharacter(id: episodeModel[i].id) { [weak self] response, error in
                 guard let self else { return }
@@ -48,7 +48,7 @@ final class EpisodeViewModel {
         }
     }
     
-    private func getImage() {
+    func getImage() {
         for i in 0..<episodeModel.count {
             ApiService.shared.getImageData(id: episodeModel[i].id) { [weak self] result in
                 guard let self else { return }

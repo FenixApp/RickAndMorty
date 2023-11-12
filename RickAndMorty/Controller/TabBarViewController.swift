@@ -17,8 +17,10 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func setupLayer() {
-        tabBar.layer.borderWidth = 1
-        tabBar.layer.borderColor = UIColor.systemGroupedBackground.cgColor
+        tabBar.layer.shadowRadius = 4
+        tabBar.layer.shadowColor = UIColor.black.cgColor
+        tabBar.layer.shadowOpacity = 0.3
+        tabBar.backgroundColor = .systemBackground
     }
     
     private func setupItems() {

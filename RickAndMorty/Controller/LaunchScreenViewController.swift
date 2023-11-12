@@ -10,8 +10,9 @@ import UIKit
 final class LaunchScreenViewController: UIViewController {
     
     private let loadingImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 258, height: 273))
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "Loading")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -25,17 +26,16 @@ final class LaunchScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
         view.addSubview(loadingImageView)
         view.addSubview(logoImageView)
-        
-        view.backgroundColor = .systemBackground
         
         setConstraints()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        loadingImageView.center = view.center
         
         animate()
     }
@@ -73,7 +73,12 @@ extension LaunchScreenViewController {
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 128),
-            logoImageView.widthAnchor.constraint(equalToConstant: 240)
+            logoImageView.widthAnchor.constraint(equalToConstant: 240),
+            
+            loadingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            loadingImageView.heightAnchor.constraint(equalToConstant:273),
+            loadingImageView.widthAnchor.constraint(equalToConstant: 258)
         ])
     }
 }

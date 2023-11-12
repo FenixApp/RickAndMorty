@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class DataFetchService {
     
     static let shared = DataFetchService()
